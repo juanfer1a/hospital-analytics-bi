@@ -6,6 +6,34 @@ Pipeline completo de BI: datos crudos en **Databricks** → arquitectura **medal
 > **Pregunta de negocio:** ¿el hospital está aprovechando bien su capacidad de atención?
 > **Tesis:** *un hospital grande que trabaja como uno pequeño.*
 
+### Ver el tablero con datos
+
+| Opción | Cómo |
+|---|---|
+| 🖼️ **Vista rápida** | Capturas de las 5 páginas, aquí abajo |
+| 📄 **PDF** | [`docs/Hospital_BI_Tablero.pdf`](docs/Hospital_BI_Tablero.pdf) |
+| 📊 **Interactivo** | Descarga `Hospital_BI_Tablero.pbix` desde [**Releases**](../../releases/latest) y ábrelo con [Power BI Desktop](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop) (gratis). Trae los datos incluidos (modo Import), así que no necesita conexión a Databricks. |
+
+<details open>
+<summary><b>Vista del tablero</b></summary>
+
+**0 · Inventario: ¿con qué cuenta el hospital?**
+![Página 0 – Inventario](assets/p0_inventario.png)
+
+**1 · Situación: el hospital en cifras**
+![Página 1 – Situación](assets/p1_situacion.png)
+
+**2 · Complicación: la consulta externa tiene un cuello de botella**
+![Página 2 – Complicación](assets/p2_complicacion.png)
+
+**3 · Pregunta: ¿cómo usamos camas y quirófanos?**
+![Página 3 – Pregunta](assets/p3_pregunta.png)
+
+**4 · Respuesta: pacientes que requieren seguimiento**
+![Página 4 – Respuesta](assets/p4_respuesta.png)
+
+</details>
+
 ---
 
 ## 1. Arquitectura
@@ -73,7 +101,9 @@ El catálogo completo, con la fórmula, el propósito y el valor esperado de cad
 │   ├── Hospital_BI_PBIP.pbip        # Abrir este archivo en Power BI Desktop
 │   ├── Hospital_BI_PBIP.Report/     # Páginas y visuales (formato PBIR, JSON)
 │   └── Hospital_BI_PBIP.SemanticModel/  # Tablas, relaciones y medidas (TMDL)
+├── assets/                           # Capturas de las 5 páginas
 └── docs/
+    ├── Hospital_BI_Tablero.pdf       # Tablero exportado con datos
     ├── Tablero_Hospital_Sustentacion.docx
     ├── hospital_gold_constelacion_erd.html
     └── tema/                         # Tema JSON, fondos y generador
@@ -88,7 +118,7 @@ El reporte está en formato **PBIP** (proyecto de Power BI) y no en `.pbix`. As�
 3. Ve a **Transformar datos → Configuración del origen de datos** y reemplaza `<DATABRICKS_HOST>` y `<WAREHOUSE_ID>` por los de tu SQL Warehouse. Por seguridad, el repositorio no publica el host real.
 4. Pulsa **Actualizar**.
 
-> El repositorio no incluye la caché de datos (`cache.abf`). Por eso, sin conexión a Databricks, los visuales aparecen vacíos.
+> El proyecto PBIP no incluye la caché de datos (`cache.abf`). Por eso, sin conexión a Databricks, sus visuales aparecen vacíos. Para ver el tablero con datos sin configurar nada, usa el `.pbix` del Release o el PDF.
 
 ## 7. Limitaciones y calidad del dato
 
