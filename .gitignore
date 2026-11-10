@@ -11,3 +11,6 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Excepción: el tablero entregable con datos sí se versiona
+!entregables/*.pbix

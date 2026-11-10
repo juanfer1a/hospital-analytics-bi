@@ -11,8 +11,8 @@ Pipeline completo de BI: datos crudos en **Databricks** → arquitectura **medal
 | Opción | Cómo |
 |---|---|
 | 🖼️ **Vista rápida** | Capturas de las 5 páginas, aquí abajo |
-| 📄 **PDF** | [`docs/Hospital_BI_Tablero.pdf`](docs/Hospital_BI_Tablero.pdf) |
-| 📊 **Interactivo** | Descarga `Hospital_BI_Tablero.pbix` desde [**Releases**](../../releases/latest) y ábrelo con [Power BI Desktop](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop) (gratis). Trae los datos incluidos (modo Import), así que no necesita conexión a Databricks. |
+| 📄 **PDF** | [`entregables/Hospital_BI_Tablero.pdf`](entregables/Hospital_BI_Tablero.pdf) |
+| 📊 **Interactivo** | Descarga [`entregables/Hospital_BI_Tablero.pbix`](entregables/Hospital_BI_Tablero.pbix) (botón *Download raw file*) y ábrelo con [Power BI Desktop](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop) (gratis). Trae los datos incluidos (modo Import), así que no necesita conexión a Databricks. |
 
 <details open>
 <summary><b>Vista del tablero</b></summary>
@@ -101,9 +101,11 @@ El catálogo completo, con la fórmula, el propósito y el valor esperado de cad
 │   ├── Hospital_BI_PBIP.pbip        # Abrir este archivo en Power BI Desktop
 │   ├── Hospital_BI_PBIP.Report/     # Páginas y visuales (formato PBIR, JSON)
 │   └── Hospital_BI_PBIP.SemanticModel/  # Tablas, relaciones y medidas (TMDL)
+├── entregables/
+│   ├── Hospital_BI_Tablero.pbix      # Tablero interactivo con datos (abrir con Power BI Desktop)
+│   └── Hospital_BI_Tablero.pdf       # Tablero exportado
 ├── assets/                           # Capturas de las 5 páginas
 └── docs/
-    ├── Hospital_BI_Tablero.pdf       # Tablero exportado con datos
     ├── Tablero_Hospital_Sustentacion.docx
     ├── hospital_gold_constelacion_erd.html
     └── tema/                         # Tema JSON, fondos y generador
@@ -118,7 +120,7 @@ El reporte está en formato **PBIP** (proyecto de Power BI) y no en `.pbix`. As�
 3. Ve a **Transformar datos → Configuración del origen de datos** y reemplaza `<DATABRICKS_HOST>` y `<WAREHOUSE_ID>` por los de tu SQL Warehouse. Por seguridad, el repositorio no publica el host real.
 4. Pulsa **Actualizar**.
 
-> El proyecto PBIP no incluye la caché de datos (`cache.abf`). Por eso, sin conexión a Databricks, sus visuales aparecen vacíos. Para ver el tablero con datos sin configurar nada, usa el `.pbix` del Release o el PDF.
+> El proyecto PBIP no incluye la caché de datos (`cache.abf`). Por eso, sin conexión a Databricks, sus visuales aparecen vacíos. Para ver el tablero con datos sin configurar nada, usa el `.pbix` o el PDF de `entregables/`.
 
 ## 7. Limitaciones y calidad del dato
 
