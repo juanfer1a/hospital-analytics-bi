@@ -1,0 +1,128 @@
+table dim_date
+	lineageTag: 78c2ec20-da32-4e19-a7c5-098b70e12234
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6110db76-b34b-4575-b401-389ea96904a5
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column full_date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 635f3966-2412-4e48-99c5-91d50ffee5aa
+		summarizeBy: none
+		sourceColumn: full_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d0913a8-3696-4738-9d68-9dacfde61425
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: f84e5b13-52af-4b45-b208-7faae7c6b1d9
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = User
+
+	column quarter_name
+		dataType: string
+		lineageTag: 733ead64-ad55-4547-a797-a23ded09f299
+		summarizeBy: none
+		sourceColumn: quarter_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 242ffbf0-ea4b-484d-a80c-ebe62dd777c2
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column month_name
+		dataType: string
+		lineageTag: 2fcb8067-0634-4ffb-beab-cc82c6ea0aa1
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 5ce74fc2-bbb7-4ef9-8b87-8bb041bbdcad
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a102ba3-27fc-4551-a510-2b86d1e4593e
+		summarizeBy: none
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = User
+
+	column day_name
+		dataType: string
+		lineageTag: ccc15b4b-12ef-4b90-a3c0-1a1892117506
+		summarizeBy: none
+		sourceColumn: day_name
+		sortByColumn: day_of_week
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1094a5ac-6f07-4576-a098-4b4f28a15aaf
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Etiqueta año + trimestre (ej. 2024 T3) para matrices y ejes.
+	column Año-Trimestre = FORMAT ( dim_date[year], "0" ) & " " & dim_date[quarter_name]
+		dataType: string
+		lineageTag: 431cd8d9-4ac5-4aa7-87ff-4d53afc8c8e8
+		summarizeBy: none
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_date_hospital_gold_bi_View = Source{[Item="dim_date",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_date_hospital_gold_bi_View
+
+	changedProperty = Name
+

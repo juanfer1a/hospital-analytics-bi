@@ -1,0 +1,158 @@
+table fact_surgeries
+	lineageTag: fb1b747c-8250-44b9-a00b-44688704e536
+
+	column surgery_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: de33a0a8-1d22-4704-8e85-913619197e24
+		summarizeBy: none
+		sourceColumn: surgery_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column patient_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4b771577-edff-43bc-8dfd-ac8cae92afab
+		summarizeBy: none
+		sourceColumn: patient_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column surgeon_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 69bf05f4-d340-42ff-bebe-fc9a3170ca36
+		summarizeBy: none
+		sourceColumn: surgeon_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column room_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0afedbca-2743-4ccc-878c-45a51d46e385
+		summarizeBy: none
+		sourceColumn: room_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2c5a337d-d1e4-48ae-acb2-324d8d2efdf5
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column nurse_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 28505e62-4200-443f-90da-105a242c765f
+		summarizeBy: none
+		sourceColumn: nurse_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column helper_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d52b6340-6d2e-4008-b55d-7355a23b5348
+		summarizeBy: none
+		sourceColumn: helper_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 858269a3-692d-4e92-b96e-b5f7af0234a4
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column surgery_type
+		dataType: string
+		lineageTag: b06515e2-fadc-4df7-bbce-ea000f7efedc
+		summarizeBy: none
+		sourceColumn: surgery_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_ts
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: dcb35e1d-b2db-41cd-a164-d71cbd1cb6c4
+		summarizeBy: none
+		sourceColumn: start_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_ts
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 8dd0fa14-d4cc-4ca4-b7a7-7d450d42ae6b
+		summarizeBy: none
+		sourceColumn: end_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_minutes
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0ed50b38-7d28-4e05-b876-c9552ad7a37b
+		summarizeBy: none
+		sourceColumn: duration_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column notes
+		dataType: string
+		lineageTag: c7a01646-55fb-4a7d-aa10-3eb218dadb30
+		summarizeBy: none
+		sourceColumn: notes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_surgeries = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    fact_surgeries_hospital_gold_bi_View = Source{[Item="fact_surgeries",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    fact_surgeries_hospital_gold_bi_View
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

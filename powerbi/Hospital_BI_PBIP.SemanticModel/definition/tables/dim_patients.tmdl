@@ -1,0 +1,122 @@
+table dim_patients
+	lineageTag: 495b6d91-3fd8-47dd-ad50-c278168ba575
+
+	column patient_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cf52c280-b3bb-4cf1-b91b-534fad8e1681
+		summarizeBy: none
+		sourceColumn: patient_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column patient_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 90727bbf-a538-49a8-9259-c3a525d1e863
+		summarizeBy: none
+		sourceColumn: patient_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column full_name
+		dataType: string
+		lineageTag: f44cbeba-12e7-43d2-b3f3-b984d3bc6a9d
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 3c0306a2-2dc3-4082-8f73-303e69681741
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 9e53c199-26b4-4513-88e4-24ee6d109c57
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 7443697e-2d37-4408-88a0-ef9ec9bfc003
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cde187ab-c575-490a-a700-3199b3d5e301
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 06f59956-a439-43c3-9361-70b23ba3347b
+		summarizeBy: none
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group
+		dataType: string
+		lineageTag: 81a98ed4-e182-4a42-9a23-8489038d53f0
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 2b97977a-c4a7-41ed-a03a-56dffd32c994
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column province
+		dataType: string
+		lineageTag: 739400b0-44a8-4852-8f0c-8e4a32f34f41
+		summarizeBy: none
+		sourceColumn: province
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 50a2eecf-22d8-49d5-9ae9-05bd020e2593
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_patients = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_patients_hospital_gold_bi_View = Source{[Item="dim_patients",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_patients_hospital_gold_bi_View
+
+	changedProperty = Name
+

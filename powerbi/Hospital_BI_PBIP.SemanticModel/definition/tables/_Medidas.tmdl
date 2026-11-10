@@ -1,0 +1,323 @@
+table _Medidas
+	lineageTag: 916c1f97-40b3-441c-97e6-11c21164e31b
+
+	measure 'Total Departamentos' = COUNTROWS ( dim_departments )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: a2f414ec-3dea-4071-ad9f-fbeb2f4b2baa
+
+	measure 'Total Médicos' = COUNTROWS ( dim_doctors )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: aedb38d8-0411-49a3-b29e-fdd0df38c1ac
+
+	measure 'Total Cirujanos' = CALCULATE ( COUNTROWS ( dim_doctors ), dim_doctors[is_surgeon] = TRUE () )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 8b336e2a-90b8-47a6-b92f-b0b399aa6912
+
+	measure 'Total Enfermería' = CALCULATE ( COUNTROWS ( dim_staff ), dim_staff[role] = "Enfermería" )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 3d73628f-8fe3-4d10-8c2c-1fbdb359b2cf
+
+	measure 'Total Auxiliares' = CALCULATE ( COUNTROWS ( dim_staff ), dim_staff[role] = "Auxiliar" )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 783cd8cd-a577-4975-9dea-64000ab33518
+
+	measure 'Total Camas' = COUNTROWS ( dim_beds )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: d032307e-4fd3-47ce-a2da-569e2aa356e7
+
+	measure 'Total Habitaciones' = COUNTROWS ( dim_rooms )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: f13aaba5-317e-48e0-a532-c29b05cf24d3
+
+	measure 'Total Pabellones' = DISTINCTCOUNT ( dim_beds[ward_no] )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 95d9522d-27e6-4248-a167-2bea8356a50b
+
+	measure 'Total Pacientes' = COUNTROWS ( dim_patients )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 0a1e1e03-f16a-4b2b-aef7-df7625ade148
+
+	measure 'Médicos por Depto' = CALCULATE ( COUNTROWS ( dim_doctors ), TREATAS ( VALUES ( dim_departments[department_key] ), dim_doctors[department_key] ) )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 63970eae-2918-40cc-9490-fb31496c6a16
+
+	measure 'Personal por Depto' = CALCULATE ( COUNTROWS ( dim_staff ), TREATAS ( VALUES ( dim_departments[department_key] ), dim_staff[department_key] ) )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 85742046-209b-4f99-9d3a-076b55ef88af
+
+	measure 'Camas por Depto' = CALCULATE ( COUNTROWS ( dim_beds ), TREATAS ( VALUES ( dim_departments[department_key] ), dim_beds[department_key] ) )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: c7d6a319-8daa-43f8-95f1-1181d15a3978
+
+	measure 'Habitaciones por Depto' = CALCULATE ( COUNTROWS ( dim_rooms ), TREATAS ( VALUES ( dim_departments[department_key] ), dim_rooms[department_key] ) )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: f5cd6541-1597-4005-80f4-7062e8f650c6
+
+	measure 'Recaudo Citas' = SUM ( fact_appointments[payment_amount] )
+		formatString: #,0
+		displayFolder: 1 Situación
+		lineageTag: 6faa2cc0-8df6-4f4d-878b-16dc41685b95
+
+	measure 'Pacientes con Cita' = DISTINCTCOUNT ( fact_appointments[patient_key] )
+		formatString: #,0
+		displayFolder: 1 Situación
+		lineageTag: acdf8e93-6b0c-4a14-8b50-3f0ecea466eb
+
+	measure 'Citas Completadas' = SUM ( fact_appointments[is_completed] )
+		formatString: #,0
+		displayFolder: 1 Situación
+		lineageTag: 53134ee1-a426-42a0-9fdf-78d965a50ada
+
+	measure 'Total Estancias' = COUNTROWS ( fact_admissions )
+		formatString: #,0
+		displayFolder: 1 Situación
+		lineageTag: e281f622-68d8-4bcc-a42b-8bf541b70570
+
+	measure 'Total Cirugías' = COUNTROWS ( fact_surgeries )
+		formatString: #,0
+		displayFolder: 1 Situación
+		lineageTag: 20f8fb34-78a7-48e4-aedf-7de171f3f737
+
+	measure '% No Asistió' = DIVIDE ( SUM ( fact_appointments[is_no_show] ), [Total Citas] )
+		formatString: 0.0%
+		displayFolder: 2 Complicación
+		lineageTag: bbfa9634-2e7e-4878-a805-98a39b8f947f
+
+	measure '% Canceladas' = DIVIDE ( SUM ( fact_appointments[is_cancelled] ), [Total Citas] )
+		formatString: 0.0%
+		displayFolder: 2 Complicación
+		lineageTag: fbd22001-a9dd-4c00-9115-189fe65328ec
+
+	measure 'Citas Perdidas' = SUM ( fact_appointments[is_no_show] ) + SUM ( fact_appointments[is_cancelled] )
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: 82ad9a3f-44e4-469f-b9a5-6330cc794c72
+
+	measure 'Recaudo Efectivo' = CALCULATE ( [Recaudo Citas], fact_appointments[is_completed] = 1 )
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: dcc8beb3-18b1-4871-85d2-41715266ff9d
+
+	measure 'Recaudo sin Atención' = [Recaudo Citas] - [Recaudo Efectivo]
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: dd995491-8d28-4dde-a767-ce82af8e7e11
+
+	measure 'Ticket Promedio Efectivo' = DIVIDE ( [Recaudo Efectivo], [Citas Completadas] )
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: e78bfcf1-ca37-4e65-9ec7-22d98efddd15
+
+	measure 'Recaudo Perdido (estimado)' = [Citas Perdidas] * [Ticket Promedio Efectivo]
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: e45fac96-2caa-40d0-8f7b-ed358bf94aca
+
+	measure 'Médicos con Citas' = DISTINCTCOUNT ( fact_appointments[doctor_key] )
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: 724a8e78-a9e5-43d0-93ce-628f3fd7ed77
+
+	measure 'Departamentos con Citas' = DISTINCTCOUNT ( fact_appointments[department_key] )
+		formatString: #,0
+		displayFolder: 2 Complicación
+		lineageTag: 2811a03a-e2df-4494-bc1a-b1081ceab2bb
+
+	measure '% Concentración Top Médico' = DIVIDE ( MAXX ( VALUES ( dim_doctors[doctor_key] ), [Total Citas] ), [Total Citas] )
+		formatString: 0.0%
+		displayFolder: 2 Complicación
+		lineageTag: 140bd947-fa4a-4e81-868a-43c25ed85993
+
+	measure 'Estancia Promedio (días)' = AVERAGE ( fact_admissions[length_of_stay_days] )
+		formatString: #,0.0
+		displayFolder: 3 Pregunta
+		lineageTag: f001adbf-3ec2-46c7-85d4-d9fe0a5a388d
+
+	measure 'Estancia Máxima (días)' = MAX ( fact_admissions[length_of_stay_days] )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: c19eed1c-c7cb-4ad2-adc6-2da05e8afa2c
+
+	measure 'Facturación Estancias' = SUM ( fact_admissions[amount] )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: 706d394c-c73d-4abd-95fa-4be5a5fd6b06
+
+	measure 'Facturación Promedio Estancia' = AVERAGE ( fact_admissions[amount] )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: f942934e-1294-47c6-a256-d3bfc42c3fde
+
+	measure Egresos = CALCULATE ( COUNTROWS ( fact_admissions ), USERELATIONSHIP ( fact_admissions[discharge_date_key], dim_date[date_key] ) )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: 3d4ce65e-9dd9-4c8d-a3f7-9a3668414faf
+
+	measure 'Estancias Abiertas' = CALCULATE ( COUNTROWS ( fact_admissions ), fact_admissions[is_open] = TRUE () ) + 0
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: f553736e-3816-4d2e-a348-787de2f3df82
+
+	/// Oculta: el dataset de origen no trae horas de inicio/fin de cirugía (0 de 1.000 en bronce).
+	measure 'Duración Promedio Cirugía (min)' = AVERAGE ( fact_surgeries[duration_minutes] )
+		formatString: #,0.0
+		isHidden
+		displayFolder: 3 Pregunta
+		lineageTag: 95d0b6f1-8fc9-445e-9102-15a5a2c54f55
+
+	measure 'Registros Clínicos' = COUNTROWS ( fact_medical_records )
+		formatString: #,0
+		displayFolder: 4 Respuesta
+		lineageTag: e47527df-2c11-4666-b3c2-96da7ab1a88a
+
+	measure 'Registros Crónicos' = SUM ( fact_medical_records[is_chronic] )
+		formatString: #,0
+		displayFolder: 4 Respuesta
+		lineageTag: dc038b42-2cd0-4048-8570-d9fecce20ecd
+
+	measure '% Registros Crónicos' = DIVIDE ( [Registros Crónicos], [Registros Clínicos] )
+		formatString: 0.0%
+		displayFolder: 4 Respuesta
+		lineageTag: e45bff86-45b1-4a3e-9c4f-81b89cc42e60
+
+	measure 'Pacientes Crónicos' = CALCULATE ( DISTINCTCOUNT ( fact_medical_records[patient_key] ), fact_medical_records[is_chronic] = 1 )
+		formatString: #,0
+		displayFolder: 4 Respuesta
+		lineageTag: a75944e5-6bcf-4fdf-be8f-7b00c778b19e
+
+	measure 'Pacientes con Presión Alta' = CALCULATE ( DISTINCTCOUNT ( fact_medical_records[patient_key] ), fact_medical_records[is_high_bp] = 1 )
+		formatString: #,0
+		displayFolder: 4 Respuesta
+		lineageTag: a372312a-de5c-4838-bdd6-ffa01b6f2183
+
+	measure 'Días Promedio a Próxima Visita' = AVERAGE ( fact_medical_records[days_to_next_visit] )
+		formatString: #,0.0
+		displayFolder: 4 Respuesta
+		lineageTag: fca52428-28d5-4b3a-8f89-ed9197a94415
+
+	measure 'Total Citas Tarjeta' = FORMAT([Total Citas], "#,0")
+		displayFolder: Base
+		lineageTag: a4e0e45f-c1e4-4638-ae88-a63a1f3fc31c
+
+	measure 'Total Citas' = COUNTROWS( fact_appointments)
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: f7cfa753-c120-43e4-b010-9be520d2f726
+
+	measure 'Enfermería por Depto' = CALCULATE ( [Personal por Depto], dim_staff[role] = "Enfermería" )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: b89c649e-9d58-4b91-a78c-e58ae13c0ca7
+
+	measure 'Auxiliares por Depto' = CALCULATE ( [Personal por Depto], dim_staff[role] = "Auxiliar" )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 17df74c7-ac6d-4efa-9d40-02cb30526c65
+
+	measure 'Pabellones por Depto' = CALCULATE ( DISTINCTCOUNT ( dim_beds[ward_no] ), TREATAS ( VALUES ( dim_departments[department_key] ), dim_beds[department_key] ) )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: f7b9e9b0-ade5-464e-9286-b5c749241393
+
+	measure 'Departamentos Seleccionados' = COUNTROWS ( VALUES ( dim_departments[department_key] ) )
+		formatString: #,0
+		displayFolder: 0 Inventario
+		lineageTag: 1071bcd5-c427-4521-b6bf-aa61c9c11714
+
+	measure 'Estancias en Cama' = CALCULATE ( [Total Estancias], fact_admissions[stay_type] = "Cama" )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: 90fb8827-3f2e-4e5c-adcc-82e206fd9c7e
+
+	measure 'Estancia Prom. Cama (días)' = CALCULATE ( [Estancia Promedio (días)], fact_admissions[stay_type] = "Cama" )
+		formatString: #,0.0
+		displayFolder: 3 Pregunta
+		lineageTag: f065d736-7aff-42e9-b472-e04bc6b2c6e6
+
+	measure 'Estancia Máx. Cama (días)' = CALCULATE ( [Estancia Máxima (días)], fact_admissions[stay_type] = "Cama" )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: 5efa629c-ad6a-424e-a5af-e47e3bef482a
+
+	measure 'Facturación Prom. Cama' = CALCULATE ( [Facturación Promedio Estancia], fact_admissions[stay_type] = "Cama" )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: dde8ae7a-ca41-4625-b158-f7c0db1eb162
+
+	measure 'Estancia Prom. Habitación (días)' = CALCULATE ( [Estancia Promedio (días)], fact_admissions[stay_type] = "Habitación" )
+		formatString: #,0.0
+		displayFolder: 3 Pregunta
+		lineageTag: 1a49e141-0d7b-4cf0-9058-a360288eef80
+
+	measure 'Facturación Prom. Habitación' = CALCULATE ( [Facturación Promedio Estancia], fact_admissions[stay_type] = "Habitación" )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: f7bea59f-74f9-47aa-9cb5-340984849fdd
+
+	measure 'Cirugías Top 10' = VAR _rank = RANKX ( ALLSELECTED ( fact_surgeries[surgery_type] ), [Total Cirugías], , DESC, Skip ) RETURN IF ( _rank <= 10, [Total Cirugías] )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: 1a1b95e9-bbc7-46e5-b1f6-79f57175f253
+
+	measure 'PA Sistólica (lectura alta)' = CALCULATE ( MAX ( fact_medical_records[systolic_bp] ), fact_medical_records[is_high_bp] = 1 )
+		formatString: 0
+		displayFolder: 4 Respuesta
+		lineageTag: 41d55a7f-fa9d-4061-b8d6-52f51a65ba83
+
+	measure 'PA Diastólica (lectura alta)' = CALCULATE ( MAX ( fact_medical_records[diastolic_bp] ), fact_medical_records[is_high_bp] = 1 )
+		formatString: 0
+		displayFolder: 4 Respuesta
+		lineageTag: 6d2bebb3-b2c4-4e26-a6cd-2535ea4205bd
+
+	measure 'Diagnóstico (lectura alta)' = CALCULATE ( MAX ( fact_medical_records[diagnosis] ), fact_medical_records[is_high_bp] = 1 )
+		displayFolder: 4 Respuesta
+		lineageTag: 4524cd15-19f2-4c04-8e4c-7517239b34b7
+
+	measure 'Próxima Visita (lectura alta)' = VAR _k = CALCULATE ( MAX ( fact_medical_records[next_visit_date_key] ), fact_medical_records[is_high_bp] = 1 ) RETURN IF ( NOT ISBLANK ( _k ), LOOKUPVALUE ( dim_date[full_date], dim_date[date_key], _k ) )
+		formatString: dd/mm/yyyy
+		displayFolder: 4 Respuesta
+		lineageTag: 24560e4a-54b3-4477-85c4-ba3ad6be5798
+
+	measure 'Cirugías (tarjeta)' = COALESCE ( [Total Cirugías], 0 )
+		formatString: #,0
+		displayFolder: 3 Pregunta
+		lineageTag: 1fdb3aef-4b50-474c-a1fa-4f97f46a7ca3
+
+	measure 'Presión Arterial (lectura alta)' = VAR _s = [PA Sistólica (lectura alta)] RETURN IF ( NOT ISBLANK ( _s ), _s & "/" & [PA Diastólica (lectura alta)] )
+		displayFolder: 4 Respuesta
+		lineageTag: dd47ade5-cae8-41ba-b1c2-4142f69a5af2
+
+	measure 'Próxima Cita (seguimiento)' = VAR _hb = CALCULATE ( COUNTROWS ( fact_medical_records ), fact_medical_records[is_high_bp] = 1 ) VAR _k = CALCULATE ( MAX ( fact_medical_records[next_visit_date_key] ), fact_medical_records[is_high_bp] = 1 ) RETURN IF ( _hb > 0, IF ( ISBLANK ( _k ), "Sin cita programada", FORMAT ( LOOKUPVALUE ( dim_date[full_date], dim_date[date_key], _k ), "yyyy-mm-dd" ) ) )
+		displayFolder: 4 Respuesta
+		lineageTag: a1f8c35a-3319-4964-9e1c-e62bb8fbe0e6
+
+	measure 'Hipertensos sin Próxima Cita' = COUNTROWS ( FILTER ( VALUES ( dim_patients[patient_key] ), CALCULATE ( COUNTROWS ( fact_medical_records ), fact_medical_records[is_high_bp] = 1 ) > 0 && ISBLANK ( CALCULATE ( MAX ( fact_medical_records[next_visit_date_key] ), fact_medical_records[is_high_bp] = 1 ) ) ) ) + 0
+		formatString: #,0
+		displayFolder: 4 Respuesta
+		lineageTag: 8eb115be-734b-405c-aa9b-dd3394b73e03
+
+	partition _Medidas = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d217060e65b85af4a280",
+  "position": {
+    "x": 492,
+    "y": 264,
+    "z": 6000,
+    "height": 360,
+    "width": 750,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_patients"
+                    }
+                  },
+                  "Property": "age_group"
+                }
+              },
+              "queryRef": "dim_patients.age_group",
+              "nativeQueryRef": "age_group",
+              "active": true,
+              "displayName": "Grupo de edad"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Pacientes Crónicos"
+                }
+              },
+              "queryRef": "_Medidas.Pacientes Crónicos",
+              "nativeQueryRef": "Pacientes Crónicos",
+              "displayName": "Pacientes crónicos"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_patients"
+                  }
+                },
+                "Property": "age_group"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Los mayores de 60 son el 46 % de los pacientes crónicos'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bad428200f6b72295a87",
+  "position": {
+    "x": 966,
+    "y": 648,
+    "z": 13000,
+    "height": 366,
+    "width": 930,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_departments"
+                    }
+                  },
+                  "Property": "department_name"
+                }
+              },
+              "queryRef": "dim_departments.department_name",
+              "nativeQueryRef": "department_name",
+              "displayName": "Departamento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Médicos por Depto"
+                }
+              },
+              "queryRef": "_Medidas.Médicos por Depto",
+              "nativeQueryRef": "Médicos por Depto",
+              "displayName": "Médicos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Personal por Depto"
+                }
+              },
+              "queryRef": "_Medidas.Personal por Depto",
+              "nativeQueryRef": "Personal por Depto",
+              "displayName": "Enfermería y auxiliares"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Camas por Depto"
+                }
+              },
+              "queryRef": "_Medidas.Camas por Depto",
+              "nativeQueryRef": "Camas por Depto",
+              "displayName": "Camas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Habitaciones por Depto"
+                }
+              },
+              "queryRef": "_Medidas.Habitaciones por Depto",
+              "nativeQueryRef": "Habitaciones por Depto",
+              "displayName": "Habitaciones"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_departments"
+                  }
+                },
+                "Property": "department_name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "300D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_departments.department_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Médicos por Depto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Personal por Depto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Camas por Depto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Habitaciones por Depto"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ficha de capacidad por departamento'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

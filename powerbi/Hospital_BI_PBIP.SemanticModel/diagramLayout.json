@@ -1,0 +1,175 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1628.6814540881853,
+            "y": 5.7513956572630605
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "916c1f97-40b3-441c-97e6-11c21164e31b",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 858.1661665812685,
+            "y": 1211.5027913145261
+          },
+          "nodeIndex": "dim_beds",
+          "nodeLineageTag": "cc72845c-b4f6-4216-a691-32a209c9f9b1",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 182.39829213358371,
+            "y": 0
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "78c2ec20-da32-4e19-a7c5-098b70e12234",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 520.93839071731691,
+            "y": 869.95255873053782
+          },
+          "nodeIndex": "dim_departments",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 576.30864399506117,
+            "y": 160.17205891340518
+          },
+          "nodeIndex": "dim_doctors",
+          "nodeLineageTag": "b65e2282-561b-45d6-8841-8749ef31632b",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 875.05465829824152,
+            "y": 368.99890440012109
+          },
+          "nodeIndex": "dim_patients",
+          "nodeLineageTag": "495b6d91-3fd8-47dd-ad50-c278168ba575",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1535.9314540881853,
+            "y": 765.62540662274523
+          },
+          "nodeIndex": "dim_rooms",
+          "nodeLineageTag": "7382dbad-3854-443b-8d9f-49112b22e5b6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 234.56621040969048,
+            "y": 1010.8721985380646
+          },
+          "nodeIndex": "dim_staff",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1338.3301852527111,
+            "y": 1168.1874190244944
+          },
+          "nodeIndex": "fact_admissions",
+          "nodeLineageTag": "2667c416-debd-482b-8ccc-eb1e4bd633e7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 187.12490822560312,
+            "y": 657.25122131491753
+          },
+          "nodeIndex": "fact_appointments",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 343.66203172131895
+          },
+          "nodeIndex": "fact_medical_records",
+          "nodeLineageTag": "ae87ac40-c305-4808-91b0-25e442499275",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1363.9223524275385,
+            "y": 0
+          },
+          "nodeIndex": "fact_surgeries",
+          "nodeLineageTag": "fb1b747c-8250-44b9-a00b-44688704e536",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 30.105241453763465,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

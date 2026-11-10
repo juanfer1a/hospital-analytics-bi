@@ -1,0 +1,175 @@
+table fact_admissions
+	lineageTag: 2667c416-debd-482b-8ccc-eb1e4bd633e7
+
+	column admission_code
+		dataType: string
+		lineageTag: f77b90ca-d42b-4f73-91fc-5a7b5916afb0
+		summarizeBy: none
+		sourceColumn: admission_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column stay_type
+		dataType: string
+		lineageTag: 19d9c87e-09db-4977-b699-cb4a301bf5a7
+		summarizeBy: none
+		sourceColumn: stay_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column admission_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0808ac67-c01d-4bf7-a162-d7d77da66974
+		summarizeBy: none
+		sourceColumn: admission_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column patient_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d9ad0259-2f8f-44cb-8ec7-06e4c61ad841
+		summarizeBy: none
+		sourceColumn: patient_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column bed_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 195e1c00-e5fb-4637-bdd8-aabc79e4e985
+		summarizeBy: none
+		sourceColumn: bed_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column room_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 94cace4e-0f9d-4203-b467-ca10c308e06f
+		summarizeBy: none
+		sourceColumn: room_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3ee41e01-6c7b-4706-aa57-b80a62a47853
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column nurse_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7a416d4d-3b30-4aee-99f1-fef638c72220
+		summarizeBy: none
+		sourceColumn: nurse_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column helper_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 95941258-3a6e-4b5d-8f77-3ca01e44c3d0
+		summarizeBy: none
+		sourceColumn: helper_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column admission_date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b3084bef-c34a-4d1c-bcf3-cb777c91ecbd
+		summarizeBy: none
+		sourceColumn: admission_date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column discharge_date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1eb2527d-3e41-41e8-ac1c-29a749145548
+		summarizeBy: none
+		sourceColumn: discharge_date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column length_of_stay_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 56c71bc7-e59c-4e80-8c43-0fe653d52b3f
+		summarizeBy: none
+		sourceColumn: length_of_stay_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_open
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cd570edc-6dba-41d5-8187-c7755d853512
+		summarizeBy: none
+		sourceColumn: is_open
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		isHidden
+		lineageTag: dd14446a-dac6-4b8c-86bc-b6e7d5fcf7ef
+		summarizeBy: none
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_method
+		dataType: string
+		lineageTag: 12c7b735-c697-4e83-a75a-a4afbfdebc72
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_admissions = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    fact_admissions_hospital_gold_bi_View = Source{[Item="fact_admissions",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    fact_admissions_hospital_gold_bi_View
+
+	changedProperty = Name
+

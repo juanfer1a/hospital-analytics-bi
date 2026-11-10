@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "7deff2084261c5f69fa2",
+  "position": {
+    "x": 24,
+    "y": 264,
+    "z": 5000,
+    "height": 360,
+    "width": 450,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_medical_records"
+                    }
+                  },
+                  "Property": "Condición"
+                }
+              },
+              "queryRef": "fact_medical_records.Condición",
+              "nativeQueryRef": "Condición",
+              "active": true,
+              "displayName": "Condición"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Registros Clínicos"
+                }
+              },
+              "queryRef": "_Medidas.Registros Clínicos",
+              "nativeQueryRef": "Registros Clínicos",
+              "displayName": "Consultas"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'12,3 % de las consultas son por enfermedad crónica'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

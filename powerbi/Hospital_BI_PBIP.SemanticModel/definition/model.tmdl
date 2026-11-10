@@ -1,0 +1,30 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim_beds","dim_date","dim_departments","dim_doctors","dim_patients","dim_rooms","dim_staff","fact_admissions","fact_appointments","fact_medical_records","fact_surgeries","_Medidas"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","TMDLView_Desktop","MCP-PBIModeling","DevMode"]
+
+ref table dim_beds
+ref table dim_date
+ref table dim_departments
+ref table dim_doctors
+ref table dim_patients
+ref table dim_rooms
+ref table dim_staff
+ref table fact_admissions
+ref table fact_appointments
+ref table fact_medical_records
+ref table fact_surgeries
+ref table _Medidas
+
+ref cultureInfo en-US
+

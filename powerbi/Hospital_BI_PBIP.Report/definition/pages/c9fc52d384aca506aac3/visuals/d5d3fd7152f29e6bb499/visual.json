@@ -1,0 +1,133 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d5d3fd7152f29e6bb499",
+  "position": {
+    "x": 966,
+    "y": 264,
+    "z": 6000,
+    "height": 366,
+    "width": 930,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_rooms"
+                    }
+                  },
+                  "Property": "room_type"
+                }
+              },
+              "queryRef": "dim_rooms.room_type",
+              "nativeQueryRef": "room_type",
+              "active": true,
+              "displayName": "Tipo de habitación"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Facturación Prom. Habitación"
+                }
+              },
+              "queryRef": "_Medidas.Facturación Prom. Habitación",
+              "nativeQueryRef": "Facturación Prom. Habitación",
+              "displayName": "Facturación promedio"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Estancia Prom. Habitación (días)"
+                }
+              },
+              "queryRef": "_Medidas.Estancia Prom. Habitación (días)",
+              "nativeQueryRef": "Estancia Prom. Habitación (días)",
+              "displayName": "Días promedio"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "Facturación Prom. Habitación"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "lineChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'linear'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Super Deluxe: la estancia más larga (5,2 días) y más costosa (78.239)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,63 @@
+table dim_rooms
+	lineageTag: 7382dbad-3854-443b-8d9f-49112b22e5b6
+
+	column room_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fcb059dd-c5e7-4402-86ba-1826d07759dd
+		summarizeBy: none
+		sourceColumn: room_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column room_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e18832e-c8c3-45df-a819-c09291110666
+		summarizeBy: none
+		sourceColumn: room_no
+
+		annotation SummarizationSetBy = User
+
+	column room_type
+		dataType: string
+		lineageTag: dc3a4370-2c21-4f69-91b1-f00f3912db16
+		summarizeBy: none
+		sourceColumn: room_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 65831902-ca31-40fa-81f5-12ff74c8a843
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_name
+		dataType: string
+		lineageTag: aac1b466-d2da-4a42-9427-14617a6063da
+		summarizeBy: none
+		sourceColumn: department_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_rooms = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_rooms_hospital_gold_bi_View = Source{[Item="dim_rooms",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_rooms_hospital_gold_bi_View
+
+	changedProperty = Name
+

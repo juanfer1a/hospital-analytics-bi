@@ -1,0 +1,46 @@
+table dim_departments
+	lineageTag: 742f3514-e0be-4c4e-8e62-cd963d99809e
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4b4f28b5-b860-45b2-b9e9-7781e5a9adc6
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1adfbe68-43b0-40b1-ba08-3b3ac0a62e52
+		summarizeBy: none
+		sourceColumn: department_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_name
+		dataType: string
+		lineageTag: f3b80a92-73a1-4654-8e7a-72f59ad045e6
+		summarizeBy: none
+		sourceColumn: department_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_departments = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_departments_hospital_gold_bi_View = Source{[Item="dim_departments",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_departments_hospital_gold_bi_View
+
+	changedProperty = Name
+

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bb6d4b6248058bcfc8fb",
+  "position": {
+    "x": 966,
+    "y": 648,
+    "z": 7000,
+    "height": 366,
+    "width": 930,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_surgeries"
+                    }
+                  },
+                  "Property": "surgery_type"
+                }
+              },
+              "queryRef": "fact_surgeries.surgery_type",
+              "nativeQueryRef": "surgery_type",
+              "active": true,
+              "displayName": "Tipo de cirugía"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Cirugías Top 10"
+                }
+              },
+              "queryRef": "_Medidas.Cirugías Top 10",
+              "nativeQueryRef": "Cirugías Top 10",
+              "displayName": "Cirugías"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "Cirugías Top 10"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ninguna cirugía domina: las más frecuentes van de 29 a 39 casos'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

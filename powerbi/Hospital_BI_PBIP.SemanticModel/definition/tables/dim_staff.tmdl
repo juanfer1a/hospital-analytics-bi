@@ -1,0 +1,82 @@
+table dim_staff
+	lineageTag: 1b6f9467-8184-46ca-bd4b-c3aca947e0c0
+
+	column staff_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5563239d-bcec-4838-923a-743e3cf813a8
+		summarizeBy: none
+		sourceColumn: staff_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column role
+		dataType: string
+		lineageTag: 4b673f23-187b-4a1a-a69e-77769addd02b
+		summarizeBy: none
+		sourceColumn: role
+
+		annotation SummarizationSetBy = Automatic
+
+	column staff_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 08c6ef7e-7a11-47f5-aad4-be36a37d4788
+		summarizeBy: none
+		sourceColumn: staff_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column staff_name
+		dataType: string
+		lineageTag: 06945a7b-d429-4351-b563-bb90ca06fcd0
+		summarizeBy: none
+		sourceColumn: staff_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: ef6ad9d0-37f5-4e3c-9fc6-7322410a2016
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f7bf1e08-5cb9-4fb0-bc0a-c6b3ce106ddb
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_name
+		dataType: string
+		lineageTag: 15351184-cda5-44cd-a2b5-af5465ad4286
+		summarizeBy: none
+		sourceColumn: department_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_staff = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_staff_hospital_gold_bi_View = Source{[Item="dim_staff",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_staff_hospital_gold_bi_View
+
+	changedProperty = Name
+

@@ -1,0 +1,206 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "bd39f69d0e98751fa0b4",
+  "position": {
+    "x": 1275,
+    "y": 276,
+    "z": 8000,
+    "height": 336,
+    "width": 606,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Recomendaciones",
+                    "textStyle": {
+                      "fontSize": "18pt",
+                      "color": "#1F6FB2",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1  ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1F6FB2",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Redistribuir la agenda médica",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1E2A3A",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     Un solo médico atiende el 50,5 % de las citas.",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "6pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2  ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1F6FB2",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Recordatorios automáticos de citas",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1E2A3A",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     145 citas perdidas: 10,2 % de inasistencia.",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "6pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3  ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1F6FB2",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Auditar la facturación",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1E2A3A",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     373.745 registrados en citas no atendidas.",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "6pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4  ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1F6FB2",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Agendar seguimiento a crónicos",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1E2A3A",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     72 hipertensos hoy no tienen próxima cita.",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#1E2A3A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

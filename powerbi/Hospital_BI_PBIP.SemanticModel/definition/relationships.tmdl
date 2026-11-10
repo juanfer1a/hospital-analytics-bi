@@ -1,0 +1,95 @@
+relationship AutoDetected_fdf6e261-0505-4bf0-ae33-b3bd25deeb74
+	fromColumn: fact_admissions.bed_key
+	toColumn: dim_beds.bed_key
+
+relationship AutoDetected_735c878e-4af8-41ee-980b-1bd250cf73de
+	fromColumn: fact_admissions.department_key
+	toColumn: dim_departments.department_key
+
+relationship AutoDetected_b161a3a6-aab8-46d5-bb35-11c0c8b8d791
+	fromColumn: fact_appointments.department_key
+	toColumn: dim_departments.department_key
+
+relationship AutoDetected_5427b09f-0b6c-46f9-b05f-a027fbf48149
+	fromColumn: fact_medical_records.department_key
+	toColumn: dim_departments.department_key
+
+relationship AutoDetected_4561cc54-72f9-4f25-84f2-267edb167c70
+	fromColumn: fact_surgeries.department_key
+	toColumn: dim_departments.department_key
+
+relationship AutoDetected_75f3b494-79b3-4de6-94f5-ee9aea19486f
+	fromColumn: fact_appointments.date_key
+	toColumn: dim_date.date_key
+
+relationship AutoDetected_fd5aa675-8a56-4db8-b744-a0a21adac88a
+	fromColumn: fact_medical_records.date_key
+	toColumn: dim_date.date_key
+
+relationship AutoDetected_70325802-24cc-4ab5-a9a1-6d206dd8fb50
+	fromColumn: fact_surgeries.date_key
+	toColumn: dim_date.date_key
+
+relationship AutoDetected_a173f7f0-ba39-43c0-a4ac-861c00b9c7ea
+	fromColumn: fact_appointments.doctor_key
+	toColumn: dim_doctors.doctor_key
+
+relationship AutoDetected_e7b6e18c-c19c-40db-bb94-babbaf1f6b15
+	fromColumn: fact_medical_records.doctor_key
+	toColumn: dim_doctors.doctor_key
+
+relationship AutoDetected_a7248dd8-1e57-4267-bde4-34f2ae358e9f
+	fromColumn: fact_admissions.patient_key
+	toColumn: dim_patients.patient_key
+
+relationship AutoDetected_044400fd-be90-419e-ae28-558c3a05ab5b
+	fromColumn: fact_appointments.patient_key
+	toColumn: dim_patients.patient_key
+
+relationship AutoDetected_02ae802a-a75d-4619-8530-b06de48664cc
+	fromColumn: fact_medical_records.patient_key
+	toColumn: dim_patients.patient_key
+
+relationship AutoDetected_307ca141-55a4-4d9b-8150-343c00aca18f
+	fromColumn: fact_surgeries.patient_key
+	toColumn: dim_patients.patient_key
+
+relationship AutoDetected_6e396365-346c-4626-bc4a-6db532742285
+	fromColumn: fact_admissions.room_key
+	toColumn: dim_rooms.room_key
+
+relationship AutoDetected_b83e3b02-2bb2-4857-959c-7b1c7e497505
+	fromColumn: fact_surgeries.room_key
+	toColumn: dim_rooms.room_key
+
+relationship 681351db-87f9-a612-f2f4-35ec08089781
+	fromColumn: fact_admissions.admission_date_key
+	toColumn: dim_date.date_key
+
+relationship 951c785f-faec-ac96-b3ab-542b2a15fa3e
+	isActive: false
+	fromColumn: fact_admissions.discharge_date_key
+	toColumn: dim_date.date_key
+
+relationship f4ad16fd-daf2-4fab-a5ad-90618f176b27
+	fromColumn: fact_admissions.nurse_key
+	toColumn: dim_staff.staff_key
+
+relationship a3a4be87-20a3-5dc0-a168-7198a486f56f
+	isActive: false
+	fromColumn: fact_admissions.helper_key
+	toColumn: dim_staff.staff_key
+
+relationship 13fcb03a-ccf5-6c49-28e7-c3c5a9c511a9
+	fromColumn: fact_surgeries.surgeon_key
+	toColumn: dim_doctors.doctor_key
+
+relationship d5e619ba-56d1-e351-7cdb-5ad78522714a
+	fromColumn: fact_surgeries.nurse_key
+	toColumn: dim_staff.staff_key
+
+relationship 8cc83eb0-c4fe-531f-9634-4e566acce0dd
+	isActive: false
+	fromColumn: fact_surgeries.helper_key
+	toColumn: dim_staff.staff_key
+

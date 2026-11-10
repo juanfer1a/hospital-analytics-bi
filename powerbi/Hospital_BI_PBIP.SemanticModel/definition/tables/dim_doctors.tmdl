@@ -1,0 +1,106 @@
+table dim_doctors
+	lineageTag: b65e2282-561b-45d6-8841-8749ef31632b
+
+	column doctor_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 69a1df20-5600-4e11-a183-1dbcfe39a73a
+		summarizeBy: none
+		sourceColumn: doctor_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column doctor_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 123e628f-12e5-45f4-92c1-d717ea698f2d
+		summarizeBy: none
+		sourceColumn: doctor_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column doctor_name
+		dataType: string
+		lineageTag: 95a0d55f-ab45-468e-8c88-4caa070abd3a
+		summarizeBy: none
+		sourceColumn: doctor_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 4d61d336-83bf-4314-b1da-829c4ea1c292
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_surgeon
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 10aba0d7-6f21-4e2a-bbd2-64df4360f66f
+		summarizeBy: none
+		sourceColumn: is_surgeon
+
+		annotation SummarizationSetBy = Automatic
+
+	column surgeon_type
+		dataType: string
+		lineageTag: b94c1bff-d7ef-4838-a953-2169ec76e879
+		summarizeBy: none
+		sourceColumn: surgeon_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column office_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f295af1-f6a8-44b8-a45f-9be6beabd43b
+		summarizeBy: none
+		sourceColumn: office_no
+
+		annotation SummarizationSetBy = User
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fbfb15a6-2ef8-42a9-9ac1-06f8f7bccde3
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_name
+		dataType: string
+		lineageTag: 4dc219b3-c828-4864-a6b5-18e2ab7b8860
+		summarizeBy: none
+		sourceColumn: department_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Etiqueta legible de is_surgeon para visuales.
+	column 'Tipo de médico' = IF ( dim_doctors[is_surgeon], "Cirujano", "No cirujano" )
+		dataType: string
+		lineageTag: 8feb2595-48ab-4a4b-b19f-faf213afd786
+		summarizeBy: none
+
+	partition dim_doctors = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_doctors_hospital_gold_bi_View = Source{[Item="dim_doctors",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_doctors_hospital_gold_bi_View
+
+	changedProperty = Name
+

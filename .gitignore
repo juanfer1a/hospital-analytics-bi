@@ -1,0 +1,13 @@
+# Power BI: caché de datos y configuración local (no versionar)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/editorSettings.json
+*.pbix
+# Borradores del editor de Power BI
+**/DAXQueries/
+**/TMDLScripts/
+# Office / SO
+~$*
+.DS_Store
+Thumbs.db
+desktop.ini

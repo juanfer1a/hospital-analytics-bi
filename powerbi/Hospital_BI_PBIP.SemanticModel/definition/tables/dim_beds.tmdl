@@ -1,0 +1,82 @@
+table dim_beds
+	lineageTag: cc72845c-b4f6-4216-a691-32a209c9f9b1
+
+	column bed_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e2bcaf14-cb73-419c-a7cb-27777fefc441
+		summarizeBy: none
+		sourceColumn: bed_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column bed_no
+		dataType: int64
+		formatString: 0
+		lineageTag: e290d4c6-f85d-41ba-8e63-5d8764f55eba
+		summarizeBy: none
+		sourceColumn: bed_no
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ward_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 49bb5f76-bb23-48ab-8f47-69d33698e394
+		summarizeBy: none
+		sourceColumn: ward_no
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ward_name
+		dataType: string
+		lineageTag: 4abb195a-8a36-4f26-9d98-dad59d3ac4b1
+		summarizeBy: none
+		sourceColumn: ward_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cc130bcd-38af-4012-969e-0be53aa15d4e
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_name
+		dataType: string
+		lineageTag: 40bff598-eaaa-4f5d-9c85-c74b542823ab
+		summarizeBy: none
+		sourceColumn: department_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_beds = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    dim_beds_hospital_gold_bi_View = Source{[Item="dim_beds",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    dim_beds_hospital_gold_bi_View
+
+	changedProperty = Name
+
+	changedProperty = IsHidden
+

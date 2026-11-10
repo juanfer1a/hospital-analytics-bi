@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d429f9e7161b981be6d4",
+  "position": {
+    "x": 24,
+    "y": 648,
+    "z": 11000,
+    "height": 366,
+    "width": 450,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_doctors"
+                    }
+                  },
+                  "Property": "Tipo de médico"
+                }
+              },
+              "queryRef": "dim_doctors.Tipo de médico",
+              "nativeQueryRef": "Tipo de médico",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Médicos por Depto"
+                }
+              },
+              "queryRef": "_Medidas.Médicos por Depto",
+              "nativeQueryRef": "Médicos por Depto",
+              "displayName": "Médicos"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Menos de 1 de cada 10 médicos es cirujano'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

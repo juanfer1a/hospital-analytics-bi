@@ -1,0 +1,149 @@
+table fact_appointments
+	lineageTag: d1dad308-5333-4e3f-b65e-122cb0f016fc
+
+	column appointment_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7b3632ae-a6f2-464e-864e-5779e9038c8e
+		summarizeBy: none
+		sourceColumn: appointment_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column patient_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a07e2844-9848-4aae-8855-043714f70af8
+		summarizeBy: none
+		sourceColumn: patient_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column doctor_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36e5d02c-8ba0-419b-8c2f-b6e01ff37a84
+		summarizeBy: none
+		sourceColumn: doctor_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 92956608-b165-4b8d-af08-fc7e211ccfcb
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5cd9f6f7-541f-46df-b48f-23219d870e47
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column reason
+		dataType: string
+		lineageTag: ef174980-2af5-47da-a03d-b1a421066a5f
+		summarizeBy: none
+		sourceColumn: reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: cf87c2ec-bc57-45b5-b146-805c97a6fe8b
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_mode
+		dataType: string
+		lineageTag: 58bca96a-459d-4777-8542-34f100f1b046
+		summarizeBy: none
+		sourceColumn: appointment_mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_method
+		dataType: string
+		lineageTag: b26973ff-d2f7-4d95-94e7-710b44e110ad
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_amount
+		dataType: double
+		isHidden
+		lineageTag: 85fdfbea-d362-49e7-a1d0-26d68ef5ff62
+		summarizeBy: none
+		sourceColumn: payment_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_completed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a7bd7e85-084e-478b-a1a4-8c9877ac9566
+		summarizeBy: none
+		sourceColumn: is_completed
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_no_show
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 67f5df56-091e-40e2-8267-c92b6ce78fa3
+		summarizeBy: none
+		sourceColumn: is_no_show
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_cancelled
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7e253508-617c-4fe8-8420-acca5db9ad91
+		summarizeBy: none
+		sourceColumn: is_cancelled
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_appointments = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    fact_appointments_hospital_gold_bi_View = Source{[Item="fact_appointments",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    fact_appointments_hospital_gold_bi_View
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

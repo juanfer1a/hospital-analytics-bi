@@ -1,0 +1,259 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "25738cbbfb80a8709559",
+  "position": {
+    "x": 24,
+    "y": 642,
+    "z": 7000,
+    "height": 372,
+    "width": 1872,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_patients"
+                    }
+                  },
+                  "Property": "full_name"
+                }
+              },
+              "queryRef": "dim_patients.full_name",
+              "nativeQueryRef": "full_name",
+              "displayName": "Paciente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_patients"
+                    }
+                  },
+                  "Property": "age_group"
+                }
+              },
+              "queryRef": "dim_patients.age_group",
+              "nativeQueryRef": "age_group",
+              "displayName": "Grupo de edad"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Diagnóstico (lectura alta)"
+                }
+              },
+              "queryRef": "_Medidas.Diagnóstico (lectura alta)",
+              "nativeQueryRef": "Diagnóstico (lectura alta)",
+              "displayName": "Diagnóstico"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Presión Arterial (lectura alta)"
+                }
+              },
+              "queryRef": "_Medidas.Presión Arterial (lectura alta)",
+              "nativeQueryRef": "Presión Arterial (lectura alta)",
+              "displayName": "Presión arterial"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Próxima Cita (seguimiento)"
+                }
+              },
+              "queryRef": "_Medidas.Próxima Cita (seguimiento)",
+              "nativeQueryRef": "Próxima Cita (seguimiento)",
+              "displayName": "Próxima cita"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "Próxima Cita (seguimiento)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "420D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_patients.full_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "300D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_patients.age_group"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "420D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Diagnóstico (lectura alta)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "300D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Presión Arterial (lectura alta)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "380D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Próxima Cita (seguimiento)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'72 de 134 pacientes con presión alta no tienen cita de seguimiento'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

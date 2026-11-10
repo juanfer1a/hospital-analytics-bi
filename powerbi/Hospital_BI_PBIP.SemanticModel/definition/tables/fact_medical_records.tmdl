@@ -1,0 +1,185 @@
+table fact_medical_records
+	lineageTag: ae87ac40-c305-4808-91b0-25e442499275
+
+	column record_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 857e148b-3efd-41ae-b246-64f603c909c1
+		summarizeBy: none
+		sourceColumn: record_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column patient_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 440c22eb-dfec-43c6-a738-e919f0962e07
+		summarizeBy: none
+		sourceColumn: patient_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column doctor_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ae078883-e2fa-4838-9ec2-25485fe6cff5
+		summarizeBy: none
+		sourceColumn: doctor_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column department_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 979440b8-a8fb-42d8-aa82-21bd2d1a79d8
+		summarizeBy: none
+		sourceColumn: department_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a424a45f-254e-4488-a6a1-298f4aa3a796
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column next_visit_date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d4179151-c0c0-46f0-b6a5-8c1813b01d79
+		summarizeBy: none
+		sourceColumn: next_visit_date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column days_to_next_visit
+		dataType: int64
+		formatString: 0
+		lineageTag: 784e3246-9a00-4e15-b217-c41168bb053d
+		summarizeBy: none
+		sourceColumn: days_to_next_visit
+
+		annotation SummarizationSetBy = Automatic
+
+	column diagnosis
+		dataType: string
+		lineageTag: 94b2ccf6-0d9f-4fe4-af6d-ff0b71f80791
+		summarizeBy: none
+		sourceColumn: diagnosis
+
+		annotation SummarizationSetBy = Automatic
+
+	column treatment
+		dataType: string
+		lineageTag: bb1e1dd2-5607-46b5-9e27-298797903004
+		summarizeBy: none
+		sourceColumn: treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight
+		dataType: double
+		lineageTag: 5f2b2ca4-c6c0-4790-9054-157b624b6f5d
+		summarizeBy: none
+		sourceColumn: weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column height
+		dataType: double
+		lineageTag: 93c2c699-6536-410f-af8a-2cd7a0133ecf
+		summarizeBy: none
+		sourceColumn: height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column systolic_bp
+		dataType: int64
+		formatString: 0
+		lineageTag: 55987bf9-fcc0-46b2-bcce-ad237d8a4145
+		summarizeBy: none
+		sourceColumn: systolic_bp
+
+		annotation SummarizationSetBy = Automatic
+
+	column diastolic_bp
+		dataType: int64
+		formatString: 0
+		lineageTag: d88c16dd-fc29-49b5-bf4e-ff8eca5f8369
+		summarizeBy: none
+		sourceColumn: diastolic_bp
+
+		annotation SummarizationSetBy = Automatic
+
+	column temp_c
+		dataType: double
+		lineageTag: 972a7251-65d1-4192-9bcb-b688d5a584cb
+		summarizeBy: none
+		sourceColumn: temp_c
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_high_bp
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 44f3b5e6-cecd-469b-aff3-46c8bc7d7447
+		summarizeBy: none
+		sourceColumn: is_high_bp
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_chronic
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7d141672-aba1-4913-8141-9ed0b05f92d5
+		summarizeBy: none
+		sourceColumn: is_chronic
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Etiqueta legible de is_chronic.
+	column Condición = IF ( fact_medical_records[is_chronic] = 1, "Crónico", "No crónico" )
+		dataType: string
+		lineageTag: 6b16a111-22dc-4c29-b6d1-63e5447e6a85
+		summarizeBy: none
+
+	partition fact_medical_records = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("<DATABRICKS_HOST>", "/sql/1.0/warehouses/<WAREHOUSE_ID>", [Catalog="bi", Database="Hospital_Gold", QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    fact_medical_records_hospital_gold_bi_View = Source{[Item="fact_medical_records",Schema="hospital_gold",Catalog="bi",Kind="View"]}[Data]
+				in
+				    fact_medical_records_hospital_gold_bi_View
+
+	changedProperty = Name
+

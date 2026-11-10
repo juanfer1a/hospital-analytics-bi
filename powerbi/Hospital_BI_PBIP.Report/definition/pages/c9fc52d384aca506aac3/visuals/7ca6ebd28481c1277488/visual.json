@@ -1,0 +1,329 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "7ca6ebd28481c1277488",
+  "position": {
+    "x": 24,
+    "y": 264,
+    "z": 5000,
+    "height": 750,
+    "width": 924,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_beds"
+                    }
+                  },
+                  "Property": "ward_name"
+                }
+              },
+              "queryRef": "dim_beds.ward_name",
+              "nativeQueryRef": "ward_name",
+              "displayName": "Pabellón"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Estancias en Cama"
+                }
+              },
+              "queryRef": "_Medidas.Estancias en Cama",
+              "nativeQueryRef": "Estancias en Cama",
+              "displayName": "Estancias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Estancia Prom. Cama (días)"
+                }
+              },
+              "queryRef": "_Medidas.Estancia Prom. Cama (días)",
+              "nativeQueryRef": "Estancia Prom. Cama (días)",
+              "displayName": "Días promedio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Estancia Máx. Cama (días)"
+                }
+              },
+              "queryRef": "_Medidas.Estancia Máx. Cama (días)",
+              "nativeQueryRef": "Estancia Máx. Cama (días)",
+              "displayName": "Días máximo"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Facturación Prom. Cama"
+                }
+              },
+              "queryRef": "_Medidas.Facturación Prom. Cama",
+              "nativeQueryRef": "Facturación Prom. Cama",
+              "displayName": "Facturación promedio"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "Estancia Prom. Cama (días)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "300D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_beds.ward_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Estancias en Cama"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Estancia Prom. Cama (días)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Estancia Máx. Cama (días)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Facturación Prom. Cama"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "_Medidas"
+                            }
+                          },
+                          "Property": "Estancia Prom. Cama (días)"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#EAF2FB'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#5C9AD3'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E2A3A'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Medidas.Estancia Prom. Cama (días)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'La UCI retiene más tiempo: 5,9 días promedio y casos de hasta 40 días'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Hospital_BI_PBIP"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a0e03a06-62c1-4795-a296-2fe6df26d762"
+  }
+}
